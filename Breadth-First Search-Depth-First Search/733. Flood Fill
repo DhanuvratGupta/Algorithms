@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/flood-fill/?envType=study-plan&id=algorithm-i
+class Solution {
+    public void find(int[][] image, int sr, int sc, int color,int val)
+    {
+        if(sr<0 ||sr>=image.length || sc<0 || sc>=image[0].length || image[sr][sc]!=val)
+        {
+            return;
+        }
+         image[sr][sc]=color;
+        find(image,sr-1,sc,color,val);  //up
+        find(image,sr+1,sc,color,val);  //left
+        
+        find(image,sr,sc-1,color,val);  //down
+        find(image,sr,sc+1,color,val);  //right
+        
+    }
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        if(image[sr][sc]==color)
+        {
+            return image;
+        }
+        int val=image[sr][sc];
+        
+        find(image,sr,sc,color,val);
+        return image;
+
+    }
+}
